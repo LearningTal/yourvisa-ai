@@ -2,12 +2,14 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/react';
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher';
 import { MobileNavigation } from '@/components/layout/MobileNavigation';
 import { Button } from '@/components/ui/Button';
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { data: session, status } = useSession();
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -46,12 +48,44 @@ export function Header() {
             
             {/* Authentication Buttons */}
             <div className="hidden sm:flex items-center space-x-3">
-              <Button variant="secondary" size="sm">
-                Sign In
-              </Button>
-              <Button variant="primary" size="sm">
-                Get Started
-              </Button>
+              {status === 'loading' ? (
+                <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+              ) : session ? (
+                <div className="flex items-center space-x-3">
+                  <Link href="/dashboard">
+                    <Button variant="secondary" size="sm">
+                      Dashboard
+                    </Button>
+                  </Link>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                      <span className="text-white font-medium text-sm">
+                        {session.user?.name?.charAt(0) || session.user?.email?.charAt(0)}
+                      </span>
+                    </div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => signOut()}
+                    >
+                      Sign Out
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Link href="/auth/signin">
+                    <Button variant="secondary" size="sm">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link href="/auth/signup">
+                    <Button variant="primary" size="sm">
+                      Get Started
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
