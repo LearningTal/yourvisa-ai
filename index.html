@@ -10,42 +10,63 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B82F6',
+                        primary: '#2563EB',
+                        secondary: '#1E40AF',
+                        accent: '#3B82F6',
                         success: '#10B981',
                         warning: '#F59E0B',
                         error: '#EF4444',
-                        visa: {
-                            50: '#F0F9FF',
-                            100: '#E0F2FE',
-                            500: '#0EA5E9',
-                            600: '#0284C7',
-                            700: '#0369A1'
-                        }
+                        dark: '#1F2937',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'bounce-slow': 'bounce 2s infinite',
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .hero-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-light">
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-gray-200">
+    <header class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-visa-600">YourVisa.ai</h1>
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">V</span>
+                    </div>
+                    <h1 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        YourVisa.ai
+                    </h1>
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#features" class="text-gray-700 hover:text-visa-600">Features</a>
-                    <a href="#about" class="text-gray-700 hover:text-visa-600">About</a>
-                    <a href="#contact" class="text-gray-700 hover:text-visa-600">Contact</a>
+                    <a href="#features" class="text-gray-700 hover:text-primary font-medium transition-colors">Features</a>
+                    <a href="#solutions" class="text-gray-700 hover:text-primary font-medium transition-colors">Solutions</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-primary font-medium transition-colors">Pricing</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary font-medium transition-colors">About</a>
                 </nav>
                 <div class="flex items-center space-x-4">
-                    <button class="bg-visa-600 text-white px-4 py-2 rounded-lg hover:bg-visa-700">
+                    <button class="text-gray-700 hover:text-primary font-medium transition-colors">
+                        Sign In
+                    </button>
+                    <button class="bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl">
                         Get Started
                     </button>
                 </div>
@@ -54,174 +75,298 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-visa-50 to-blue-50 py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-                Revolutionize Visa Processing
-                <span class="text-visa-600">with AI</span>
-            </h1>
-            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                YourVisa.ai streamlines visa processing with AI-powered intelligence, reducing time-to-decision by 10x while maintaining 95% accuracy.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button class="bg-visa-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-visa-700">
-                    Start Free Trial
-                </button>
-                <button class="border-2 border-visa-600 text-visa-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-visa-50">
-                    Schedule Demo
-                </button>
+    <section class="hero-gradient text-white py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full -translate-y-48 translate-x-48"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-10 rounded-full translate-y-32 -translate-x-32"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-fade-in">
+                    AI-Powered Visa Processing
+                    <span class="block text-3xl md:text-4xl font-normal mt-4 opacity-90">
+                        in Minutes, Not Days
+                    </span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-12 opacity-90 leading-relaxed">
+                    Transform visa processing from hours to minutes with our intelligent automation. 
+                    <span class="font-semibold">ETIAS 2026 ready.</span> Enterprise-grade security. 
+                    <span class="font-semibold">10+ languages supported.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                    <button class="bg-white text-primary px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                        Start Free Trial
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300">
+                        Schedule Demo
+                    </button>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">10x</div>
+                        <div class="opacity-80">Faster Processing</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">95%</div>
+                        <div class="opacity-80">Accuracy Rate</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold mb-2">24/7</div>
+                        <div class="opacity-80">AI Support</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-20 bg-white">
+    <section id="features" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">Key Features</h2>
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Revolutionary Features
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our AI-powered platform combines cutting-edge technology with enterprise-grade security 
+                    to deliver unprecedented efficiency in visa processing.
+                </p>
+            </div>
+            
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="w-12 h-12 bg-visa-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-visa-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Feature 1 -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">AI-Powered Processing</h3>
-                    <p class="text-gray-600">Intelligent document analysis and processing with advanced OCR technology.</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI-Powered Processing</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Advanced machine learning algorithms analyze documents with human-like precision, 
+                        reducing processing time from weeks to hours.
+                    </p>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Feature 2 -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-success to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">95% Accuracy</h3>
-                    <p class="text-gray-600">Industry-leading accuracy rates with continuous learning and improvement.</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">95% Accuracy</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Industry-leading accuracy rates with continuous learning and improvement. 
+                        Our AI gets smarter with every application processed.
+                    </p>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Feature 3 -->
+                <div class="bg-gradient-to-br from-yellow-50 to-amber-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-warning to-orange-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">10x Faster</h3>
-                    <p class="text-gray-600">Dramatically reduce processing time from weeks to days or hours.</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">10x Faster</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Dramatically reduce processing time from weeks to days or hours. 
+                        What used to take months now happens in minutes.
+                    </p>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Feature 4 -->
+                <div class="bg-gradient-to-br from-purple-50 to-violet-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-violet-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Multi-User Support</h3>
-                    <p class="text-gray-600">Enterprise-grade user management with role-based access control.</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Multi-User Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Enterprise-grade user management with role-based access control. 
+                        Perfect for teams and organizations of any size.
+                    </p>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Feature 5 -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Global Coverage</h3>
-                    <p class="text-gray-600">Support for 195+ countries and territories worldwide.</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Global Coverage</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Support for 195+ countries and territories worldwide. 
+                        From tourist visas to work permits, we've got you covered.
+                    </p>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl">
-                    <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Feature 6 -->
+                <div class="bg-gradient-to-br from-red-50 to-rose-50 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-rose-600 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Real-Time Updates</h3>
-                    <p class="text-gray-600">Live status tracking and instant notifications throughout the process.</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Real-Time Updates</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Live status tracking and instant notifications throughout the process. 
+                        Never wonder about your application status again.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ETIAS 2026 Section -->
-    <section class="py-20 bg-visa-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-gray-900 mb-8">ETIAS 2026 Ready</h2>
-            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Be prepared for the European Travel Information and Authorization System. Our platform ensures compliance and seamless processing for all ETIAS applications.
-            </p>
-            <button class="bg-visa-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-visa-700">
-                Learn More About ETIAS
-            </button>
+    <section class="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    ETIAS 2026 Ready
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Be prepared for the European Travel Information and Authorization System. 
+                    Our platform ensures compliance and seamless processing for all ETIAS applications.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-3xl p-12 shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">
+                            Stay Ahead of the Curve
+                        </h3>
+                        <ul class="space-y-4 text-gray-600">
+                            <li class="flex items-center">
+                                <svg class="w-6 h-6 text-success mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Automated compliance checking
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-6 h-6 text-success mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Real-time status updates
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-6 h-6 text-success mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Multi-language support
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-6 h-6 text-success mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Enterprise-grade security
+                            </li>
+                        </ul>
+                        <button class="bg-primary text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-secondary transition-all duration-300 mt-8 shadow-lg hover:shadow-xl">
+                            Learn More About ETIAS
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-64 h-64 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto flex items-center justify-center animate-float">
+                            <span class="text-white text-6xl font-bold">2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section id="contact" class="py-20 bg-gray-900 text-white">
+    <section class="py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold mb-8">Ready to Transform Visa Processing?</h2>
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Join the future of visa processing with AI-powered intelligence and enterprise-grade security.
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">
+                Ready to Transform Visa Processing?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Join the future of visa processing with AI-powered intelligence and enterprise-grade security. 
+                Start your free trial today and see the difference.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <button class="bg-visa-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-visa-700">
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+                <button class="bg-primary text-white px-10 py-5 rounded-xl text-xl font-semibold hover:bg-secondary transition-all duration-300 shadow-2xl hover:shadow-primary/25 transform hover:scale-105">
                     Start Free Trial
                 </button>
-                <button class="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-gray-900">
+                <button class="border-2 border-white text-white px-10 py-5 rounded-xl text-xl font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
                     Schedule Demo
                 </button>
             </div>
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <div class="text-3xl font-bold text-visa-400">10x</div>
-                    <div class="text-gray-300">Faster Processing</div>
+            
+            <!-- Trust Indicators -->
+            <div class="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-primary mb-4">10x</div>
+                    <div class="text-gray-300 text-lg">Faster Processing</div>
+                    <div class="text-gray-500 text-sm mt-2">From weeks to hours</div>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-green-400">95%</div>
-                    <div class="text-gray-300">Accuracy Rate</div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-success mb-4">95%</div>
+                    <div class="text-gray-300 text-lg">Accuracy Rate</div>
+                    <div class="text-gray-500 text-sm mt-2">Industry leading</div>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-yellow-400">24/7</div>
-                    <div class="text-gray-300">AI Support</div>
+                <div class="text-center">
+                    <div class="text-5xl font-bold text-warning mb-4">24/7</div>
+                    <div class="text-gray-300 text-lg">AI Support</div>
+                    <div class="text-gray-500 text-sm mt-2">Always available</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-12">
+    <footer class="bg-gray-900 text-gray-300 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-4">YourVisa.ai</h3>
-                    <p class="text-sm">Revolutionizing visa processing with AI-powered intelligence.</p>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">V</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">YourVisa.ai</h3>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Revolutionizing visa processing with AI-powered intelligence. 
+                        Making global travel accessible to everyone.
+                    </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Product</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white">Features</a></li>
-                        <li><a href="#" class="hover:text-white">Pricing</a></li>
-                        <li><a href="#" class="hover:text-white">API</a></li>
+                    <h4 class="font-semibold text-white mb-6 text-lg">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white">About</a></li>
-                        <li><a href="#" class="hover:text-white">Blog</a></li>
-                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                    <h4 class="font-semibold text-white mb-6 text-lg">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Press</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Support</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white">Help Center</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
-                        <li><a href="#" class="hover:text-white">Status</a></li>
+                    <h4 class="font-semibold text-white mb-6 text-lg">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
-                <p>&copy; 2024 YourVisa.ai. All rights reserved.</p>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 YourVisa.ai. All rights reserved.</p>
             </div>
         </div>
     </footer>
